@@ -59,9 +59,10 @@ BASE_LOC = 'en-US'
 #   #comments are ignored
 #   name=string
 # Assumptions: both comments and entries exist only on a single line.
-PROP_COMMENT = re.compile('#+[^\n\r\f]*[\n\r\f]', re.DOTALL)
-PROP_SEP = re.compile('[\n\r\f]')
-PROP_LINE = re.compile('([A-Za-z0-9]+)=([^\n\r\f]*)')
+PROP_EOL = r'\n\r\f'
+PROP_COMMENT = re.compile(r'#+[^{oel}]*[{eol}]'.format(lf=PROP_EOL), re.DOTALL)
+PROP_SEP = re.compile(r'[{}]'.format(PROP_EOL))
+PROP_LINE = re.compile(r'(\w\S*)=([^{}]*)'.format(PROP_EOL))
 
 DTD_PARSE_ERROR = re.compile('([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):(.*)', re.DOTALL)
 
